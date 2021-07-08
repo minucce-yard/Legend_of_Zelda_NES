@@ -1,0 +1,7 @@
+When switching from overworld to indoor caves / shops, upper hud briefly turns off
+-  Rendering is disabled for a few frames while room is loaded
+
+
+
+After a few chunks are processed, turn back on bg layer
+-  Continue loading several segments after hud is drawn, then repeat until done

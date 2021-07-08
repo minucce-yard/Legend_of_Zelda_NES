@@ -1,0 +1,80 @@
+//
+// Source:
+// 	minucce
+// 
+// 
+// License:
+// 	Code should be used only for educational, documentation and modding purposes.
+// 	Please keep derivative work open source.
+// 
+
+
+arch nes.cpu		// set processor architecture (NES)
+banksize $4000		// set the size of each bank
+header				// rom has a header
+
+
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+bank 5; org $aab4				// 0x16ac4
+	jsr hud_loading_blink
+	nop
+
+
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+bank 5; org $bf10				// 0x17f20 + ~$30
+
+
+//
+// Turn on bg display during vblank; disable after hud scanline
+//
+
+
+hud_loading_blink:
+	inc $06
+
+
+	lda $06
+	cmp #$10			// done loading
+	beq .exit
+	and #$03			// reset every 4 frames
+	bne .exit
+
+
+	lda $12				// verify overworld transition
+	cmp #$0a
+	bcc .exit
+	cmp #$0c
+	bcs .exit
+
+
+
+-
+	lda $2002			// wait vblank start
+	bpl -
+
+	lda #$1e			// enable drawing
+	sta $2001
+
+
+-
+	lda $2002			// wait vblank end  (sprite 0)
+	asl
+	bmi -
+
+
+	jsr $8521			// draw hud
+
+
+
+.exit:
+	lda $06
+	rts
+
