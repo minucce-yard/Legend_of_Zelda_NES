@@ -28,6 +28,12 @@ ___________________________________________________
 Commits:
 
 
+1.1 - [2021-09-04]
+*  overworld_hud_blink updated
+   -  hardware compatibility
+
+
+
 1 - [2021-09-01]
 *  overworld_hud_blink released
 

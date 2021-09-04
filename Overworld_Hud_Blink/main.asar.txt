@@ -26,7 +26,7 @@ endmacro
 
 
 
-%org($aab4, 5)				; 0x16ac4
+%org($aab4, 5)					; 0x16ac4
 	jsr hud_loading_blink
 	nop
 
@@ -36,7 +36,7 @@ endmacro
 
 
 
-%org($bf10, 5)				; 0x17f20 + ~$30
+%org($afd8, 5)					; 0x16fe8 + ~$28
 
 
 ;
@@ -49,35 +49,31 @@ hud_loading_blink:
 
 
 	lda $06
-	cmp #$10				; done loading
+	cmp #$10					; done loading
 	beq .exit
-	and #$03				; reset every 4 frames
+	and #$03					; redraw every 4 frames
 	bne .exit
 
 
-	lda $12					; verify overworld transition
+	lda $12						; verify overworld transition
 	cmp #$0a
-	bcc .exit
-	cmp #$0c
-	bcs .exit
+	beq +
+	cmp #$0b
+	bne .exit
 
 
-
++
 -
-	lda $2002				; wait vblank start
-	bpl -
-
-	lda #$1e				; enable drawing
-	sta $2001
-
-
--
-	lda $2002				; wait vblank end  (sprite 0)
+	lda $2002					; wait pre-render scanline -1
 	asl
 	bmi -
 
 
-	jsr $8521				; draw hud
+	lda #$1e					; enable drawing
+	sta $2001
+
+
+	jsr $8521					; draw hud
 
 
 
@@ -86,4 +82,5 @@ hud_loading_blink:
 	rts
 
 
-warnpc $bf40
+
+warnpc $bf00

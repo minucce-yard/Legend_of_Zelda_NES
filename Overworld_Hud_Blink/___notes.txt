@@ -5,3 +5,15 @@ When switching from overworld to indoor caves / shops, upper hud briefly turns o
 
 After a few chunks are processed, turn back on bg layer
 -  Continue loading several segments after hud is drawn, then repeat until done
+
+
+
+________________________________________________
+
+
+
+1.1 - [2021-09-04]
+
+
+Do not poll vblank status bit; does not always work
+-  Sprite 0 is cleared on pre-drawing -1

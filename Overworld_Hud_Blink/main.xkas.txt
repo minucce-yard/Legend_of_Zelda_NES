@@ -1,11 +1,11 @@
 //
 // Source:
-// 	minucce
+//   minucce
 // 
 // 
 // License:
-// 	Code should be used only for educational, documentation and modding purposes.
-// 	Please keep derivative work open source.
+//   Code should be used only for educational, documentation and modding purposes.
+//   Please keep derivative work open source.
 // 
 
 
@@ -29,7 +29,7 @@ bank 5; org $aab4				// 0x16ac4
 
 
 
-bank 5; org $bf10				// 0x17f20 + ~$30
+bank 5; org $afd8				// 0x16fe8 + ~$28
 
 
 //
@@ -42,35 +42,31 @@ hud_loading_blink:
 
 
 	lda $06
-	cmp #$10			// done loading
+	cmp #$10					// done loading
 	beq .exit
-	and #$03			// reset every 4 frames
+	and #$03					// redraw every 4 frames
 	bne .exit
 
 
-	lda $12				// verify overworld transition
+	lda $12						// verify overworld transition
 	cmp #$0a
-	bcc .exit
-	cmp #$0c
-	bcs .exit
+	beq +
+	cmp #$0b
+	bne .exit
 
 
-
++
 -
-	lda $2002			// wait vblank start
-	bpl -
-
-	lda #$1e			// enable drawing
-	sta $2001
-
-
--
-	lda $2002			// wait vblank end  (sprite 0)
+	lda $2002					// wait pre-render scanline -1
 	asl
 	bmi -
 
 
-	jsr $8521			// draw hud
+	lda #$1e					// enable drawing
+	sta $2001
+
+
+	jsr $8521					// draw hud
 
 
 
