@@ -1,0 +1,6 @@
+When scrolling vertically in overworld map, random garbage pixels appear on status bar lower-right
+-  PPUADDR trick does not reset the x-bits, loading unknown data at times
+
+
+
+Quietust suggests to do a 6-6-5 write which will reset fine-x bits and clears the bar

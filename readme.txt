@@ -21,11 +21,21 @@ overworld_hud_blink.ips  [Rev 0, Rev 1]
 
 
 
+overworld_scroll_timing.ips  [Rev 0, Rev 1]
+*  Fix vertical scrolling garbage pixels on status bar  (overworld map)
+
+
+
 ___________________________________________________
 
 
 
 Commits:
+
+
+2 - [2021-09-05]
+*  overworld_scroll_timing released
+
 
 
 1.1 - [2021-09-04]
