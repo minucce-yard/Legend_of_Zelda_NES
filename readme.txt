@@ -1,4 +1,5 @@
 Legend of Zelda, The (USA).nes
+Legend of Zelda, The (U) (PRG0).nes
 
 MD-5:  337BD6F1A1163DF31BF2633665589AB0
 SHA-1: DAB79C84934F9AA5DB4E7DAD390E5D0C12443FA2
@@ -6,6 +7,7 @@ SHA-1: DAB79C84934F9AA5DB4E7DAD390E5D0C12443FA2
 
 
 Legend of Zelda, The (USA) (Rev A).nes
+Legend of Zelda, The (U) (PRG1).nes
 
 MD-5:  F4095791987351BE68674A9355B266BC
 SHA-1: 3701381A82FC7D52B2DD3E8892047B30A114AB43
@@ -21,6 +23,11 @@ overworld_hud_blink.ips  [Rev 0, Rev 1]
 
 
 
+overworld_leave_cave.ips  [Rev 0, Rev 1]
+*  Fix misplaced player sprite when leaving underground  (overworld map)
+
+
+
 overworld_scroll_timing.ips  [Rev 0, Rev 1]
 *  Fix vertical scrolling garbage pixels on status bar  (overworld map)
 
@@ -31,6 +38,11 @@ ___________________________________________________
 
 
 Commits:
+
+
+3 - [2021-09-06]
+*  overworld_leave_cave released
+
 
 
 2 - [2021-09-05]
@@ -60,6 +72,7 @@ Visit:
 
 
 Helpful:
+
 *  fceux -- debugger
    https://github.com/tasvideos/fceux
 
@@ -75,9 +88,9 @@ _________________________________________________________
 
 Compile:
 
-*  xkas assembler by Near
-   https://www.romhacking.net/utilities/269/
-
-
-   asar assembler by Alcaro
+*  asar assembler by Alcaro
    https://github.com/RPGHacker/asar
+
+
+   xkas assembler by Near
+   https://www.romhacking.net/utilities/269/

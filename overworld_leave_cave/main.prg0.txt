@@ -1,0 +1,57 @@
+;
+; Source:
+;	minucce
+;
+;
+; License:
+;	Code should be used only for educational, documentation and modding purposes.
+;	Please keep derivative work open source.
+
+
+;
+; Reset sprite position on entering overworld from caves
+;
+
+
+%org($8f5d, 5)					; 0x14f6d
+	jsr hide_sprite
+	nop
+
+
+warnpc $8f61
+
+
+
+; #####################################################
+
+
+
+%org($8f61, 5)					; 0x14f71
+	stx $00
+	jsr $f184					; reset vars
+	ldx $00
+
+	rts
+
+
+
+hide_sprite:
+	lda #$0a					; transition out of cave
+	sta $12
+
+	lda #$f8					; hide sprite
+	sta $84
+
+	rts
+
+
+warnpc $8f72
+
+
+
+; #####################################################
+
+
+
+%org($8f72, 5)					; 0x14f82
+	rts

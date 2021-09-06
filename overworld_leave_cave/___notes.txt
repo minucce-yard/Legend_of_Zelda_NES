@@ -1,0 +1,5 @@
+When leaving overworld caves, a sprite blinks briefly usually at bottom of screen
+-  Last known position underground is used to draw player sprite for few frames
+
+
+On entering overworld, reset y-position
