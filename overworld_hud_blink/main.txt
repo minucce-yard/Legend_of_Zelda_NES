@@ -8,24 +8,6 @@
 ;	Please keep derivative work open source.
 
 
-norom
-
-
-macro org(address,bank)
-	!headersize = $10
-	!banksize = $4000
-
-
-	org (<address>-$8000)+(!banksize*<bank>)+!headersize
-	base <address>
-endmacro
-
-
-
-; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-
 %org($aab4, 5)					; 0x16ac4
 	jsr hud_loading_blink
 	nop
