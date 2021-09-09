@@ -1,0 +1,47 @@
+;
+; Source:
+;	minucce
+;
+;
+; License:
+;	Code should be used only for educational, documentation and modding purposes.
+;	Please keep derivative work open source.
+
+
+;
+; Reset timer for cave start
+;
+
+
+%org($86a3, 1)				; 0x46b3
+
+	sta $70,x				; x,y
+	sty $84,x
+
+	lda #$00				; hp
+	sta $0485,x
+
+	sta $29					; cloud timer
+
+	lda #$81				; attr
+	sta $04bf,x
+
+	lda #$40				; freeze player
+	sta $ac
+
+	sta $0351				; bonfire 1,2
+	sta $0352
+
+	lda #$48				; x1
+	sta $71,x
+
+	lda #$a8				; x2
+	sta $72,x
+
+	sty $85,x				; y1, y2
+	sty $86,x
+
+	rts
+
+
+warnpc $86ca

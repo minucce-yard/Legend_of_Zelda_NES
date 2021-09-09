@@ -1,0 +1,5 @@
+When entering caves, the cloud timer can take a very long time to wind down
+-  A leftover sprite timer from another object is still ticking down
+
+
+Reset timer on entering caves

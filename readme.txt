@@ -18,6 +18,11 @@ ___________________________________________________
 
 
 
+cave_room_timer.ips  [Rev 0, Rev 1]
+*  Fix unusual wait time for cave clouds to animate
+
+
+
 dungeon_front_room.ips  [Rev 0, Rev 1]
 *  Fix first room door unlocking without key  (dungeon 1)
 
@@ -43,6 +48,11 @@ ___________________________________________________
 
 
 Commits:
+
+
+5 - [2021-09-09]
+*  cave_room_tier released
+
 
 
 4.1 - [2021-09-08]
