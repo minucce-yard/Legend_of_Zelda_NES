@@ -18,6 +18,11 @@ ___________________________________________________
 
 
 
+dungeon_front_room.ips  [Rev 0, Rev 1]
+*  Fix first room door unlocking without key  (dungeon 1)
+
+
+
 overworld_hud_blink.ips  [Rev 0, Rev 1]
 *  Fix disappearing status bar when entering underground rooms  (overworld map)
 
@@ -38,6 +43,11 @@ ___________________________________________________
 
 
 Commits:
+
+
+4 - [2021-09-07]
+*  dungeon_front_room released
+
 
 
 3 - [2021-09-06]

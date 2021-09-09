@@ -1,0 +1,6 @@
+When entering dungeons, first room doors can glitch and unlock too early
+-  Game reads previous overworld direction and incorrectly opens doors
+
+
+
+Make sure to reset door flag on dungeon entry

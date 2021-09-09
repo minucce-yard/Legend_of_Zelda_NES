@@ -1,0 +1,97 @@
+;
+; Source:
+;	minucce
+;
+;
+; License:
+;	Code should be used only for educational, documentation and modding purposes.
+;	Please keep derivative work open source.
+
+
+;
+; Reset dungeon room door flags
+;
+
+
+%org($b4a5, 5)				; 0x174b5
+
+	jsr dungeon_front_room_reset
+
+
+warnpc $b4a8
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+;
+; Clear save ram  (optimized)
+;
+
+
+%org($b4ac, 5)				; 0x174bc
+	lda $6001				; ram start init
+	cmp #$5a
+	bne +
+
+	lda $7fff				; ram end init
+	cmp #$a5
+	beq ++
+
+
+; =====================================================
+
+
++
+	lda #$ff				; reset save slots
+	sta $652a
+	sta $652b
+	sta $652c
+
+	lda #$65				; wipe 6530-7fff
+	sta $01
+	lda #$30
+	sta $00
+
+	ldy #$00
+
+
+-
+	tya						; wipe sram
+	sta ($00), y
+
+	inc $00					; bump ptr
+	bne -
+	inc $01
+	bpl -
+
+	sec
+	rts
+
+
+; =====================================================
+
+
+++
+	clc
+	rts
+
+
+
+; #####################################################
+
+
+
+dungeon_front_room_reset:
+	sta $0526				; old code
+
+	lda #$00				; reset dungeon room flags
+	sta $ee
+
+	rts
+
+
+
+warnpc $b4e8
