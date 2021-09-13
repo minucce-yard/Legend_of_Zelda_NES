@@ -28,6 +28,12 @@ dungeon_front_room.ips  [Rev 0, Rev 1]
 
 
 
+magic_beam_align.ips  [Rev 0, Rev 1]
+*  Align beam shots with weapon positions
+*  Align vertical weapon position to player sprite
+
+
+
 overworld_hud_blink.ips  [Rev 0, Rev 1]
 *  Fix disappearing status bar when entering underground rooms  (overworld map)
 
@@ -50,8 +56,13 @@ ___________________________________________________
 Commits:
 
 
+6 - [2021-09-11]
+*  magic_beam_align released
+
+
+
 5 - [2021-09-09]
-*  cave_room_tier released
+*  cave_room_timer released
 
 
 

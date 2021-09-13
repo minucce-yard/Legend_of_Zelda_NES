@@ -1,0 +1,192 @@
+;
+; Source:
+;	minucce
+;
+;
+; License:
+;	Code should be used only for educational, documentation and modding purposes.
+;	Please keep derivative work open source.
+
+
+;
+; Sword - Rod draw parameters
+;
+
+
+%org($f749, 7)					; 0x1f759
+
+
+; xpos - up, down, left, right
+
+	db $ff, $01, $00, $f8		; State 1 = dummy  (not drawn)
+	db $ff, $01, $f5, $0b		; State 2 = attack
+	db $ff, $01, $f9, $07		; State 3 = pull back
+	db $ff, $01, $fd, $03		; State 4 = put away
+
+
+
+%org($f759, 7)					; 0x1f769
+
+
+; ypos - up, down, left, right
+
+	db $f7, $f2, $f5, $f5		; State 1 = dummy  (not drawn)
+	db $f6, $0d, $03, $03		; State 2 = attack
+	db $f7, $09, $03, $03		; State 3 = pull back
+	db $ff, $05, $03, $03		; State 4 = put away
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+; State 1 xpos = unused, reuse for our purpose
+; State 1 ypos = unused, reuse for our purpose
+
+
+
+; Vertical down sword is h-flipped to center the blade correctly (+1 right)
+; -  See Displaced Gamers hitbox detection
+
+
+%org($f749, 7)					; 0x1f759
+
+sword_palette:
+	db $00, $c0, $00, $00
+
+
+
+%org($f759, 7)					; 0x1f769
+
+rod_palette:
+	db $01, $c1, $01, $01
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+%org($f7df, 7)					; 0x1f7ef
+
+	cpx #$0d					; sword only
+	bne rod_attr
+
+
+	lda sword_palette,y
+	clc
+	adc $0657					; sword type  (1-3)
+	sec
+	sbc #$01
+	bcs set_attribute
+
+
+
+rod_attr:
+	lda rod_palette,y
+
+
+
+set_attribute:
+
+
+warnpc $f7f2
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+%org($f82c, 7)						; 0x1f83c
+
+	lda #$06						; bank 6 swap
+	jsr $ffac
+
+
+	lda #$10
+	jsr magic_shot_align
+
+
+	php
+	lda #$05						; restore bank 5
+	jsr $ffac
+	plp
+
+
+	bcs $f855-($f841-2)
+	bcc $f841-($f841-0)
+
+
+warnpc $f841
+
+
+
+; #############################################################
+
+
+
+%org($bfc0, 6)						; 0x1bfd0
+
+
+magic_shot_align:
+	jsr $711f						; create magic weapon
+
+
+	lda $98,x						; horizontal beam  (1,2)
+	cmp #$04
+	bcs vertical_beam
+
+
+	lda $70,x						; check xpos boundary
+	cmp #$14
+	bcc exit_2
+
+	cmp #$ec
+	bcs exit_2
+
+
+exit_1:
+	rts								; goto f841
+
+
+exit_2:
+	sec								; goto f855
+	rts
+
+
+
+; =======================================================
+
+
+vertical_beam:
+	cmp #$08						; up = +1 left
+	lda #$ff
+	bcs move_beam
+
+
+
+down_beam:
+	lda $ac,x						; rod (80) = +1 right
+	cmp #$80
+
+	lda #$01
+	bcs move_beam
+
+	lda #$02						; sword (10) = +2 right
+
+
+
+move_beam:
+	clc
+	adc $70,x
+	sta $70,x
+
+
+	clc								; goto f841
+	rts
+
+
+
+warnpc $bff8

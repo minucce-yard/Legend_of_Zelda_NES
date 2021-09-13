@@ -1,0 +1,9 @@
+When firing magic beams, it aligns with the player position and not the weapon's coordinate
+-  Looks kinda strange at large zoom factors  (4x)
+
+
+Magic beams are manually moved based on orientation
+
+
+Vertical down sword is also h-flipped to match player hand and center the blade
+-  Displaced Gamers mentioned that sword sprite center was off-by-1 to right
