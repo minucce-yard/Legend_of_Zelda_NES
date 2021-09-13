@@ -1,0 +1,38 @@
+;
+; Source:
+;	minucce
+;
+;
+; License:
+;	Code should be used only for educational, documentation and modding purposes.
+;	Please keep derivative work open source.
+
+
+norom
+
+
+macro org(address,bank)
+	!headersize = $10
+	!banksize = $4000
+
+
+	org (<address>%!banksize)+(!banksize*<bank>)+!headersize
+
+
+	base <address>
+endmacro
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+	incsrc overworld_hud_blink/main.txt
+	incsrc overworld_leave_cave/main.prg1.txt
+	incsrc overworld_scroll_timing/main.txt
+
+	incsrc dungeon_front_room/main.txt
+	incsrc cave_room_timer/main.txt
+
+	incsrc magic_beam_align/main.txt

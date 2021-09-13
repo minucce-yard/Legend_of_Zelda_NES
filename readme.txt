@@ -56,6 +56,11 @@ ___________________________________________________
 Commits:
 
 
+6.1 - [2021-09-12]
+*  build_script
+
+
+
 6 - [2021-09-11]
 *  magic_beam_align released
 
@@ -116,6 +121,10 @@ Helpful:
    Mesen -- debugger
    https://github.com/SourMesen/Mesen
 
+
+
+*  Disassembly
+   https://github.com/aldonunez/zelda1-disassembly
 
 
 _________________________________________________________
